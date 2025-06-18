@@ -52,11 +52,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindBase(baseState: UiState.Base) {
-        textView.text = baseState.text
+        textView.text = baseState.mainText
     }
 
     private fun bindMax(maxState: UiState.Max) {
-        textView.text = maxState.text
+        textView.text = maxState.mainText
         buttonView.isEnabled = false
     }
 
