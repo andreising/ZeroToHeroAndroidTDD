@@ -21,13 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState?.let {
-            viewModel.restore(object : BundleWrapper.Restore {
-                override fun restore(): UiState {
-                    return it.getSerializable(KEY) as UiState
-                }
-            })
-        }
+        savedInstanceState?.let { viewModel.restore(BundleWrapper.BaseRestore(it)) }
         setContentView(R.layout.activity_main)
         initView()
         observeLiveData()
@@ -36,11 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        viewModel.save(object : BundleWrapper.Save {
-            override fun save(uiState: UiState) {
-                outState.putSerializable(KEY, uiState)
-            }
-        })
+        viewModel.save(BundleWrapper.BaseSave(outState))
     }
 
     private fun initView() {
@@ -59,7 +49,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val KEY = "key"
-    }
 }
