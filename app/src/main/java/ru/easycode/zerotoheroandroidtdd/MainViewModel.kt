@@ -34,7 +34,7 @@ class MainViewModel(
     }
 
     fun restore(bundleWrapper: BundleWrapper.Restore) {
-        liveDataWrapper.update(bundleWrapper.restore())
+        currentUiState = bundleWrapper.restore()
     }
 
     fun liveData(): LiveData<UiState> = liveDataWrapper.liveData()
