@@ -54,7 +54,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
-        viewModel.liveData().observe(this) { it.apply(button, textView, progressBar) }
+        viewModel.liveData().observe(this) {
+            it.apply(button, textView, progressBar)
+        }
     }
 
     companion object {
